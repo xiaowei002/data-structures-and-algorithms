@@ -5,35 +5,30 @@ import java.util.function.Consumer;
 
 /**
  * @author weiguowei
- * @desc 数据结构——双向链表
+ * @desc 双向循环链表
+ * @Date 2023.7.10
  */
-public class DoubleLinkedList<E> implements Iterable<E>{
-    /**
-     * 头节点
-     */
+public class CircularLinkedList<E> implements Iterable<E> {
+
+    //头节点
     Node<E> head;
 
-    /**
-     * 尾节点
-     */
+    //尾节点
     Node<E> tail;
 
-    public DoubleLinkedList() {
-        this.head = new Node<E>(null, null, null);
-        this.tail = new Node<E>(null, null, null);
+    public CircularLinkedList() {
+        head = new Node<E>(null, null, null);
+        tail = new Node<E>(head, null, head);
+        head.prev = tail;
         head.next = tail;
-        tail.prev = head;
     }
 
 
-
-    //节点类
     static class Node<E> {
         //前驱
         Node<E> prev;
-
+        //值
         E value;
-
         //后继
         Node<E> next;
 
@@ -45,53 +40,14 @@ public class DoubleLinkedList<E> implements Iterable<E>{
     }
 
     /**
-     * 头部添加元素
-     *
-     * @param value 元素值
-     */
-    public void addFirst(E value) {
-        insert(0, value);
-    }
-
-    /**
-     * 尾部添加元素
-     * @param value 元素值
-     */
-    public void addLast(E value){
-        Node<E> next = tail;
-        Node<E> prev = next.prev;
-        Node<E> eNode = new Node<>(prev, value, next);
-        prev.next = eNode;
-        next.prev = eNode;
-    }
-
-    /**
-     * 任意索引处添加元素
+     * 通过索引查找元素
      *
      * @param index 索引
-     * @param value 值
-     */
-    public void insert(int index, E value) {
-        Node<E> prev = findNode(index - 1);
-        if (prev == null) {
-            throw new IllegalArgumentException(String.format("index[%d]异常", index));
-        }
-        Node<E> next = prev.next;
-        Node<E> eNode = new Node<>(prev, value, next);
-        prev.next = eNode;
-        next.prev = eNode;
-    }
-
-    /**
-     * 根据索引查找对应元素
-     *
-     * @param index 索引
-     * @return Node对象
+     * @return
      */
     private Node<E> findNode(int index) {
-        //从头节点开始遍历
         int i = -1;
-        for (Node<E> point = head; point != null; point = point.next, i++) {
+        for (Node<E> point = head; point != tail; point = point.next, i++) {
             if (i == index) {
                 return point;
             }
@@ -100,9 +56,51 @@ public class DoubleLinkedList<E> implements Iterable<E>{
     }
 
     /**
-     * 遍历链表（while循环）
+     * 在索引处添加元素
      *
-     * @param consumer 表达式
+     * @param index 索引
+     * @param value 元素值
+     */
+    public void insert(int index, E value) {
+        //前一个元素
+        Node<E> prev = findNode(index - 1);
+        if (prev == null) {
+            throw new IllegalArgumentException(String.format("index[%d]不合法", index));
+        }
+        //后一个元素
+        Node<E> next = prev.next;
+
+        Node<E> eNode = new Node<>(prev, value, next);
+        prev.next = eNode;
+        next.prev = eNode;
+    }
+
+    /**
+     * 头插法
+     *
+     * @param value
+     */
+    public void addFirst(E value) {
+        insert(0, value);
+    }
+
+    /**
+     * 尾插法
+     *
+     * @param value
+     */
+    public void addLast(E value) {
+        Node<E> next = tail;
+        Node<E> prev = next.prev;
+        Node<E> node = new Node<E>(prev, value, next);
+        prev.next = node;
+        next.prev = node;
+    }
+
+    /**
+     * 使用while循环遍历链表
+     *
+     * @param consumer
      */
     public void loopByWhile(Consumer<E> consumer) {
         Node<E> point = head.next;
@@ -113,9 +111,9 @@ public class DoubleLinkedList<E> implements Iterable<E>{
     }
 
     /**
-     * 遍历链表（for循环）
+     * 使用for循环遍历链表
      *
-     * @param consumer 表达式
+     * @param consumer
      */
     public void loopByFor(Consumer<E> consumer) {
         for (Node<E> point = head.next; point != tail; point = point.next) {
@@ -124,13 +122,15 @@ public class DoubleLinkedList<E> implements Iterable<E>{
     }
 
     /**
-     * 迭代器遍历链表
-     * @return 迭代器对象
+     * 迭代器遍历
+     *
+     * @return
      */
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             Node<E> point = head.next;
+
             @Override
             public boolean hasNext() {
                 return point != tail;
@@ -146,41 +146,41 @@ public class DoubleLinkedList<E> implements Iterable<E>{
     }
 
     /**
-     * 根据索引获取对应节点的数据
-     * @param index 索引
-     * @return 节点值
+     * 根据索引获取元素
+     *
+     * @param index
+     * @return
      */
-    public E get(int index){
+    public E get(int index) {
         Node<E> node = findNode(index);
-        if(node == null){
-            return null;
-        }
-        return node.value;
+        return node == null ? null : node.value;
     }
 
     /**
-     * 移除索引处的元素
-     * @param index 索引位置
+     * 删除索引位置处的节点
+     *
+     * @param index
      */
-    public void remove(int index){
+    public void remove(int index) {
         Node<E> prev = findNode(index - 1);
-        if(prev == null){
-            throw new IllegalArgumentException(String.format("index[%d]异常", index));
+        if (prev == null) {
+            throw new IllegalArgumentException(String.format("index[%d]不合法", index));
         }
-        if(prev.next == tail){
-            throw new IllegalArgumentException("当前链表无元素可删");
-        }
-        Node<E> removed = prev.next;
-        Node<E> next = removed.next;
 
+        Node<E> removed = prev.next;
+        if (removed == tail) {
+            throw new IllegalArgumentException("链表为空，无元素可删除");
+        }
+        Node<E> next = removed.next;
         prev.next = next;
         next.prev = prev;
     }
 
     /**
-     * 删除第一个节点
+     *
+     * 头部删除元素
      */
-    public void removeFirst(){
+    public void removeFirst() {
         remove(0);
     }
 }
