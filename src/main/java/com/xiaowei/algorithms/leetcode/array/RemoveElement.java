@@ -1,4 +1,4 @@
-package com.xiaowei.datastruct.leetcode.array;
+package com.xiaowei.algorithms.leetcode.array;
 
 import java.util.Arrays;
 

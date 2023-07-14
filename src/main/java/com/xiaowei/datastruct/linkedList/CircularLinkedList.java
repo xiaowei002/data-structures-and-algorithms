@@ -13,14 +13,11 @@ public class CircularLinkedList<E> implements Iterable<E> {
     //头节点
     Node<E> head;
 
-    //尾节点
-    Node<E> tail;
 
     public CircularLinkedList() {
         head = new Node<E>(null, null, null);
-        tail = new Node<E>(head, null, head);
-        head.prev = tail;
-        head.next = tail;
+        head.next = head;
+        head.prev = head;
     }
 
 
@@ -45,9 +42,12 @@ public class CircularLinkedList<E> implements Iterable<E> {
      * @param index 索引
      * @return
      */
-    private Node<E> findNode(int index) {
-        int i = -1;
-        for (Node<E> point = head; point != tail; point = point.next, i++) {
+    public Node<E> findNode(int index) {
+        if (index == -1) {
+            return head;
+        }
+        int i = 0;
+        for (Node<E> point = head.next; point != head; point = point.next, i++) {
             if (i == index) {
                 return point;
             }
@@ -81,7 +81,11 @@ public class CircularLinkedList<E> implements Iterable<E> {
      * @param value
      */
     public void addFirst(E value) {
-        insert(0, value);
+        Node<E> prev = head;
+        Node<E> next = head.next;
+        Node<E> eNode = new Node<>(prev, value, next);
+        prev.next = eNode;
+        next.prev = eNode;
     }
 
     /**
@@ -90,12 +94,13 @@ public class CircularLinkedList<E> implements Iterable<E> {
      * @param value
      */
     public void addLast(E value) {
-        Node<E> next = tail;
-        Node<E> prev = next.prev;
-        Node<E> node = new Node<E>(prev, value, next);
-        prev.next = node;
-        next.prev = node;
+        Node<E> prev = head.prev;
+        Node<E> next = head;
+        Node<E> eNode1 = new Node<>(prev, value, next);
+        prev.next = eNode1;
+        head.prev = eNode1;
     }
+
 
     /**
      * 使用while循环遍历链表
@@ -104,7 +109,7 @@ public class CircularLinkedList<E> implements Iterable<E> {
      */
     public void loopByWhile(Consumer<E> consumer) {
         Node<E> point = head.next;
-        while (point != tail) {
+        while (point != head) {
             consumer.accept(point.value);
             point = point.next;
         }
@@ -116,7 +121,7 @@ public class CircularLinkedList<E> implements Iterable<E> {
      * @param consumer
      */
     public void loopByFor(Consumer<E> consumer) {
-        for (Node<E> point = head.next; point != tail; point = point.next) {
+        for (Node<E> point = head.next; point != head; point = point.next) {
             consumer.accept(point.value);
         }
     }
@@ -133,7 +138,7 @@ public class CircularLinkedList<E> implements Iterable<E> {
 
             @Override
             public boolean hasNext() {
-                return point != tail;
+                return point != head;
             }
 
             @Override
@@ -168,7 +173,7 @@ public class CircularLinkedList<E> implements Iterable<E> {
         }
 
         Node<E> removed = prev.next;
-        if (removed == tail) {
+        if (removed == head) {
             throw new IllegalArgumentException("链表为空，无元素可删除");
         }
         Node<E> next = removed.next;
@@ -177,7 +182,6 @@ public class CircularLinkedList<E> implements Iterable<E> {
     }
 
     /**
-     *
      * 头部删除元素
      */
     public void removeFirst() {

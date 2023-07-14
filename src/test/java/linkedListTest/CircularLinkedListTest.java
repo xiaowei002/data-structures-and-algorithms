@@ -23,6 +23,22 @@ public class CircularLinkedListTest {
     }
 
     @Test
+    public void test6(){
+        CircularLinkedList<Integer> list = new CircularLinkedList<>();
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+        list.addLast(5);
+
+
+        list.loopByWhile(System.out::println);
+        System.out.println("---------");
+        list.loopByFor(System.out::println);
+
+    }
+
+    @Test
     public void test2(){
         CircularLinkedList<Integer> list = new CircularLinkedList<>();
         list.addLast(5);
@@ -59,17 +75,12 @@ public class CircularLinkedListTest {
     @Test
     public void test4(){
         CircularLinkedList<Integer> list = new CircularLinkedList<>();
-        list.addFirst(0);
-        list.addFirst(1);
-        list.addFirst(2);
-        list.addFirst(3);
-        list.addFirst(4);
-        list.addFirst(5);
-
-        list.remove(5);
-        for (Integer integer : list) {
-            System.out.println(integer);
-        }
+        list.addLast(0);
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+        list.addLast(5);
 
         list.remove(2);
         for (Integer integer : list) {
