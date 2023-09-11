@@ -1,4 +1,4 @@
-package com.xiaowei.algorithms.leetcode.linkedList;
+package com.xiaowei.algorithms.recursion;
 
 import java.util.Arrays;
 
@@ -26,9 +26,8 @@ public class ClimbStairs {
         }
 
         int x =  climbStairs(n-1,arr);
-        arr[n-1] = x;
         int y =  climbStairs(n-2,arr);
-        arr[n-2] = y;
+        arr[n] = x+y;
         return x+y;
     }
 
