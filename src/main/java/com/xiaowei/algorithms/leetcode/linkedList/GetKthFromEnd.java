@@ -1,7 +1,7 @@
 package com.xiaowei.algorithms.leetcode.linkedList;
 
 /**
- * https://leetcode.cn/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/
+ * @see <a href="https://leetcode.cn/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/"></a>
  * 剑指 Offer 22. 链表中倒数第k个节点
  *
  * @author weiguowei

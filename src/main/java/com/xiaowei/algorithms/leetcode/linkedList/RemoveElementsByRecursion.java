@@ -2,7 +2,7 @@ package com.xiaowei.algorithms.leetcode.linkedList;
 
 /**
  * 使用递归删除链表中的元素
- * https://leetcode.cn/problems/remove-linked-list-elements/
+ * @see <a href="https://leetcode.cn/problems/remove-linked-list-elements/"></a>
  * @author weiguowei
  * 相等返回后续节点
  * 不想等返回自身并更新next

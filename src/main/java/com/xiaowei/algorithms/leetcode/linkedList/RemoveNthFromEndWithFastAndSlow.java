@@ -6,7 +6,7 @@ import java.util.List;
  * 删除链表中倒数第N个节点
  *
  * @author weiguowei
- * https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/
+ * @see <a href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/"></a>
  * 使用快慢指针，以及两个节点，删除倒数第二个，则p1快p2 3步，当p1到null，p2为要删除的前一个节点
  */
 public class RemoveNthFromEndWithFastAndSlow {

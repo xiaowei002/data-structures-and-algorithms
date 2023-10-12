@@ -4,7 +4,7 @@ package com.xiaowei.algorithms.leetcode.linkedList;
  * 删除链表中倒数第N个节点
  *
  * @author weiguowei
- * https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/
+ * @see <a href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/"></a>
  */
 public class RemoveNthFromEnd {
     static class ListNode {

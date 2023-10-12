@@ -3,6 +3,7 @@ package com.xiaowei.algorithms.leetcode.linkedList;
 /**
  * @author weiguowei
  * 反转链表双指针，从旧链表移除添加到新链表
+ * 类似方法二，但并不构造add/remove方法
  */
 public class ReverseListMethodFive {
     static class ListNode {
@@ -26,25 +27,20 @@ public class ReverseListMethodFive {
     /**
      * 反转链表方法
      *
-     * @param head 旧链表
+     * @param o1 旧链表
      * @return
      */
-    static ListNode reverseLinkedList(ListNode head) {
-        if(head == null || head.next == null){
-            return head;
+    static ListNode reverseLinkedList(ListNode o1) {
+        if(o1 == null || o1.next == null){
+            return o1;
         }
-        //新链表的头节点 new 1
+        //定义新链表节点
         ListNode n1 = null;
-        //直到o2 == null，结束循环
-        while (head != null) {
-            //记录旧链表的下一个节点old2
-            ListNode o2 = head.next;
-            //旧链表中第一个元素指向新链表
-            head.next = n1;
-            //新链表头节点
-            n1 = head;
-            //移动旧链表第一个元素
-            head = o2;
+        while (o1 != null){
+            ListNode o2 = o1.next;
+            o1.next = n1;
+            n1 = o1;
+            o1 = o2;
         }
         return n1;
     }

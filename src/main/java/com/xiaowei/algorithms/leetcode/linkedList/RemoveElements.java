@@ -3,7 +3,7 @@ package com.xiaowei.algorithms.leetcode.linkedList;
 /**
  * @author weiguowei
  * 移除链表元素：利用两个指针，p1指向sentinel节点，p2指向头节点，判断p2是否与目标值相同，相同的话删除p2，不同的话p1，p2平移
- * https://leetcode.cn/problems/remove-linked-list-elements/
+ * @see <a href="https://leetcode.cn/problems/remove-linked-list-elements/"></a>
  */
 public class RemoveElements {
 

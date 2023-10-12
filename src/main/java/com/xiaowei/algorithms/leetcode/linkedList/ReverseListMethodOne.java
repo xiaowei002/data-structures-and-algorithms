@@ -32,14 +32,13 @@ public class ReverseListMethodOne {
      * @return
      */
     static ListNode reverseLinkedList(ListNode head) {
-        //新链表
-        ListNode newNode = null;
-        ListNode point = head;
-        while (point != null) {
-            newNode = new ListNode(point.val, newNode);
-            point = point.next;
+        ListNode listNode = null;
+        ListNode p = head;
+        while (p != null){
+            listNode = new ListNode(p.val,listNode);
+            p = p.next;
         }
-        return newNode;
+        return listNode;
     }
 
     public static void main(String[] args) {

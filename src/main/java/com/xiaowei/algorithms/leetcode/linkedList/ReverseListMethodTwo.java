@@ -3,7 +3,7 @@ package com.xiaowei.algorithms.leetcode.linkedList;
 /**
  * @author weiguowei
  * 反转链表方法2:从旧链表头部获取元素，并头插法到新链表中
- * https://leetcode.cn/problems/reverse-linked-list/
+ * @see <a href="https://leetcode.cn/problems/reverse-linked-list/"></a>
  */
 public class ReverseListMethodTwo {
     static class ListNode {
@@ -37,7 +37,8 @@ public class ReverseListMethodTwo {
          * @param node
          */
         void addFirst(ListNode node) {
-            head = new ListNode(node.val, head);
+            node.next = head;
+            head = node;
         }
 
         ListNode removeFirst() {

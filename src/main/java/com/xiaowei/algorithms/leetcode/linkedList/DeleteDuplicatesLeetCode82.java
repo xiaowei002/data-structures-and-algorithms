@@ -3,7 +3,7 @@ package com.xiaowei.algorithms.leetcode.linkedList;
 /**
  * @author weiguowei
  * 删除链表中的重复元素2，重复元素都去除
- * https://leetcode.cn/problems/remove-duplicates-from-sorted-list-ii/
+ * @see <a href="https://leetcode.cn/problems/remove-duplicates-from-sorted-list-ii/"></a>
  */
 public class DeleteDuplicatesLeetCode82 {
     static class ListNode {

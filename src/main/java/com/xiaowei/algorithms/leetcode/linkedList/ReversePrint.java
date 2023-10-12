@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Offer 06. 从尾到头打印链表
- * https://leetcode.cn/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/
+ * @see <a href="https://leetcode.cn/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/"></a>
  *
  * @author weiguowei
  */
