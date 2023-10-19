@@ -2,54 +2,103 @@ package com.xiaowei.datastruct.queue;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Queue;
 
 /**
  * 使用单项环形链表实现队列
+ *
  * @param <E>
  */
-public class LinkedListQueue<E> implements Queue<E>,Iterable<E> {
-    //内部节点类
+public class LinkedListQueue<E> implements Queue<E>, Iterable<E> {
+
     private static class Node<E>{
-         E value;
-         Node<E> next;
+        E value;
+        Node<E> next;
+
+        public Node(E value) {
+            this.value = value;
+        }
 
         public Node(E value, Node<E> next) {
             this.value = value;
             this.next = next;
         }
     }
-    //头节点
+
+    //定义头节点
     Node<E> head = new Node<>(null,null);
+
+    //定义头尾指针
     Node<E> tail = head;
 
-    public LinkedListQueue() {
+    //定义容量
+    private int capacity = Integer.MAX_VALUE;
+
+    //定义队列中的元素个数
+    private int size = 0;
+
+    {
         tail.next = head;
+    }
+    public LinkedListQueue() {}
+
+    public LinkedListQueue(int capacity) {
+        this.capacity = capacity;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
-     * 判断队列是否为空
+     * 队列尾部添加元素
+     * @param e
      * @return
      */
+    @Override
+    public boolean offer(E e) {
+        if(isFull()){
+            return false;
+        }
+        Node<E> eNode = new Node<>(e,head);
+        tail.next = eNode;
+        tail = eNode;
+        size++;
+        return true;
+    }
+
+    @Override
+    public E poll() {
+        if(isEmpty()){
+            return null;
+        }
+        Node<E> remove = head.next;
+        head.next = remove.next;
+        if(remove == tail){
+            tail = head;
+        }
+        size--;
+        return remove.value;
+    }
+
+    @Override
+    public E peek() {
+        if(isEmpty()){
+            return null;
+        }
+        return head.next.value;
+    }
+
     @Override
     public boolean isEmpty() {
-        return head == tail;
+        return size == 0;
     }
 
     @Override
-    public boolean contains(Object o) {
-        return false;
+    public boolean isFull() {
+        return size == capacity;
     }
 
-    /**
-     * 遍历队列
-     * @return
-     */
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
@@ -66,103 +115,5 @@ public class LinkedListQueue<E> implements Queue<E>,Iterable<E> {
                 return value;
             }
         };
-    }
-
-    @Override
-    public Object[] toArray() {
-        return new Object[0];
-    }
-
-    @Override
-    public <T> T[] toArray(T[] a) {
-        return null;
-    }
-
-    @Override
-    public boolean add(E e) {
-        return false;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends E> c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public void clear() {
-
-    }
-
-    /**
-     * 在队列尾部添加元素
-     * @param e the element to add
-     * @return
-     */
-    @Override
-    public boolean offer(E e) {
-        Node<E> eNode = new Node<>(e, head);
-        tail.next = eNode;
-        tail = eNode;
-        return true;
-    }
-
-    @Override
-    public E remove() {
-        return null;
-    }
-
-    /**
-     * 获取队列第一个元素的值，并移除
-     * @return
-     */
-    @Override
-    public E poll() {
-        if(isEmpty()){
-            return null;
-        }
-        Node<E> next = head.next;
-        head.next = next.next;
-        if(next == tail){
-            tail = head;
-        }
-
-        return next.value;
-    }
-
-    @Override
-    public E element() {
-        return null;
-    }
-
-    /**
-     * 获取队列头元素，不移除
-     * @return
-     */
-    @Override
-    public E peek() {
-        if(isEmpty()){
-            return null;
-        }
-        return head.next.value;
     }
 }

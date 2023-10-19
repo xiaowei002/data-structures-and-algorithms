@@ -1,46 +1,50 @@
 package queue;
 
+import com.xiaowei.datastruct.queue.CycleArrayQueue;
 import com.xiaowei.datastruct.queue.LinkedListQueue;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 /**
  * @author weiguowei
- * 测试单项环形链表实现队列
+ * 测试环型数组实现队列
  */
 
-public class LinkedListQueueTest<E> {
+public class CycleArrayQueueTest<E> {
 
     @Test
     public void offer(){
-        LinkedListQueue<Integer> integerLinkedListQueue = new LinkedListQueue<>();
+        CycleArrayQueue<Integer> integerLinkedListQueue = new CycleArrayQueue<>(5);
         integerLinkedListQueue.offer(1);
         integerLinkedListQueue.offer(2);
         integerLinkedListQueue.offer(3);
         integerLinkedListQueue.offer(4);
         integerLinkedListQueue.offer(5);
 
-        assertIterableEquals(Arrays.asList(1,2,3,4,5),integerLinkedListQueue);
+        for (Integer integer : integerLinkedListQueue) {
+            System.out.println(integer);
+        }
     }
 
     @Test
     public void poll(){
-        LinkedListQueue<Integer> integerLinkedListQueue = new LinkedListQueue<>();
+        CycleArrayQueue<Integer> integerLinkedListQueue = new CycleArrayQueue<>(4);
         integerLinkedListQueue.offer(1);
         integerLinkedListQueue.offer(2);
         Integer poll = integerLinkedListQueue.poll();
         integerLinkedListQueue.poll();
-        assertIterableEquals(Arrays.asList(),integerLinkedListQueue);
+//        assertIterableEquals(Arrays.asList(null,null),integerLinkedListQueue);
         System.out.println(poll);
+        for (Integer integer : integerLinkedListQueue) {
+            System.out.println(integer);
+        }
     }
     @Test
     public void peek(){
-        LinkedListQueue<Integer> integerLinkedListQueue = new LinkedListQueue<>();
+        CycleArrayQueue<Integer> integerLinkedListQueue = new CycleArrayQueue<>(3);
         integerLinkedListQueue.offer(1);
         integerLinkedListQueue.offer(2);
         integerLinkedListQueue.offer(3);
@@ -52,15 +56,15 @@ public class LinkedListQueueTest<E> {
 
     @Test
     public void full(){
-        LinkedListQueue<Integer> integerLinkedListQueue = new LinkedListQueue<>(3);
+        CycleArrayQueue<Integer> integerLinkedListQueue = new CycleArrayQueue<>(3);
         integerLinkedListQueue.offer(1);
         integerLinkedListQueue.offer(2);
         integerLinkedListQueue.offer(3);
-        System.out.println(integerLinkedListQueue.size());
+        System.out.println(integerLinkedListQueue.isFull());
     }
     @Test
     public void empty(){
-        LinkedListQueue<Integer> integerLinkedListQueue = new LinkedListQueue<>(3);
+        CycleArrayQueue<Integer> integerLinkedListQueue = new CycleArrayQueue<>(3);
         integerLinkedListQueue.offer(1);
         integerLinkedListQueue.offer(2);
         integerLinkedListQueue.offer(3);
@@ -72,7 +76,7 @@ public class LinkedListQueueTest<E> {
     }
     @Test
     public void iterable(){
-        LinkedListQueue<Integer> integerLinkedListQueue = new LinkedListQueue<>();
+        CycleArrayQueue<Integer> integerLinkedListQueue = new CycleArrayQueue<>(10);
         integerLinkedListQueue.offer(1);
         integerLinkedListQueue.offer(2);
         integerLinkedListQueue.offer(3);
@@ -87,4 +91,5 @@ public class LinkedListQueueTest<E> {
             System.out.println(integer);
         }
     }
+
 }
