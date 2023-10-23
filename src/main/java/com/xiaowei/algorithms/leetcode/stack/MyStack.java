@@ -17,24 +17,23 @@ class MyStack {
     LinkedListQueue<Integer> queue1 = new LinkedListQueue<>(100);
     LinkedListQueue<Integer> queue2 = new LinkedListQueue<>(100);
 
+    private int size = 0;
 
     public void push(int x) {
         if(queue1.isEmpty()){
             queue1.offer(x);
         }else {
-            int size = queue1.size();
+            queue1.offer(x);
             for (int i = 0; i < size; i++) {
                 queue2.offer(queue1.poll());
-            }
-            queue1.offer(x);
-            int size1 = queue2.size();
-            for (int j = 0; j < size1; j++) {
                 queue1.offer(queue2.poll());
             }
         }
+        size++;
     }
 
     public int pop() {
+        size--;
         return queue1.poll();
     }
 
