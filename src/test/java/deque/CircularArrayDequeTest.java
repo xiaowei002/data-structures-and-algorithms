@@ -2,26 +2,27 @@ package deque;
 
 import com.xiaowei.datastruct.deque.ArrayDeque;
 import com.xiaowei.datastruct.deque.LinkedListDeque;
-import com.xiaowei.datastruct.queue.LinkedListQueue;
 import org.junit.Test;
 
 import java.util.Date;
 
-public class LinkedListDequeTest {
+public class CircularArrayDequeTest {
     @Test
     public void offerFirst() {
-        LinkedListDeque<Integer> linkedListQueue = new LinkedListDeque<>(5);
+        ArrayDeque<Integer> linkedListQueue = new ArrayDeque<>(6);
         linkedListQueue.offerFirst(1);
         linkedListQueue.offerFirst(2);
         linkedListQueue.offerFirst(3);
         linkedListQueue.offerEnd(4);
         linkedListQueue.offerEnd(5);
-        System.out.println();
+        for (int i = 0; i < 5; i++) {
+            System.out.println(linkedListQueue.poolFirst());
+        }
     }
 
     @Test
     public void poolFist() {
-        LinkedListDeque<Integer> linkedListQueue = new LinkedListDeque<>(5);
+        ArrayDeque<Integer> linkedListQueue = new ArrayDeque<>(6);
         linkedListQueue.offerFirst(1);
         linkedListQueue.offerFirst(2);
         linkedListQueue.offerFirst(3);
@@ -53,7 +54,7 @@ public class LinkedListDequeTest {
 
     @Test
     public void iter() {
-        LinkedListDeque<Integer> linkedListQueue = new LinkedListDeque<>(5);
+        LinkedListDeque<Integer> linkedListQueue = new LinkedListDeque<>(6);
         linkedListQueue.offerFirst(1);
         linkedListQueue.offerFirst(2);
         linkedListQueue.offerFirst(3);
@@ -63,12 +64,5 @@ public class LinkedListDequeTest {
         for (Integer integer : linkedListQueue) {
             System.out.println(integer);
         }
-    }
-
-    @Test
-    public void testMath() {
-        long x = 1;
-        String format = String.format("输出【s%】,龙【s%】", new Date(),x);
-        System.out.println(format);
     }
 }
