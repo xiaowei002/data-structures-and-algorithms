@@ -1,4 +1,6 @@
-package com.xiaowei.datastruct.deque;
+package com.xiaowei.datastruct.deque.impl;
+
+import com.xiaowei.datastruct.deque.Deque;
 
 import java.util.Iterator;
 

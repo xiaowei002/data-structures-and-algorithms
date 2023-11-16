@@ -1,6 +1,6 @@
 package com.xiaowei.algorithms.leetcode.queue;
 
-import com.xiaowei.datastruct.queue.LinkedListQueue;
+import com.xiaowei.datastruct.queue.impl.LinkedListQueue;
 
 import java.util.ArrayList;
 import java.util.List;

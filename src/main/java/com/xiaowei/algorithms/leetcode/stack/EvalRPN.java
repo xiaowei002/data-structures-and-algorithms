@@ -1,6 +1,6 @@
 package com.xiaowei.algorithms.leetcode.stack;
 
-import com.xiaowei.datastruct.stack.ArrayStack;
+import com.xiaowei.datastruct.stack.impl.ArrayStack;
 
 /**
  * @author weiguowei

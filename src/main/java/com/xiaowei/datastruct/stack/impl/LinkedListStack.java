@@ -1,22 +1,21 @@
-package com.xiaowei.datastruct.queue;
+package com.xiaowei.datastruct.stack.impl;
 
-import java.util.Collection;
+import com.xiaowei.datastruct.stack.Stack;
+
 import java.util.Iterator;
 
 /**
- * 使用单项环形链表实现队列
- *
- * @param <E>
+ * @author weiguowei
+ * 基于单向链表创建栈
  */
-public class LinkedListQueue<E> implements Queue<E>, Iterable<E> {
-
-    private static class Node<E>{
+public class LinkedListStack<E> implements Stack<E>, Iterable<E> {
+    /**
+     * 单向链表节点
+     * @param <E>
+     */
+    static class Node<E>{
         E value;
         Node<E> next;
-
-        public Node(E value) {
-            this.value = value;
-        }
 
         public Node(E value, Node<E> next) {
             this.value = value;
@@ -24,59 +23,36 @@ public class LinkedListQueue<E> implements Queue<E>, Iterable<E> {
         }
     }
 
-    //定义头节点
-    Node<E> head = new Node<>(null,null);
+    //栈大小
+    private int capacity;
 
-    //定义头尾指针
-    Node<E> tail = head;
+    //栈中元素个数
+    private int size;
 
-    //定义容量
-    private int capacity = Integer.MAX_VALUE;
+    //哨兵节点
+    private Node<E> head = new Node<>(null,null);
 
-    //定义队列中的元素个数
-    private int size = 0;
-
-    {
-        tail.next = head;
-    }
-    public LinkedListQueue() {}
-
-    public LinkedListQueue(int capacity) {
+    public LinkedListStack(int capacity) {
         this.capacity = capacity;
     }
 
     @Override
-    public int size() {
-        return size;
-    }
-
-    /**
-     * 队列尾部添加元素
-     * @param e
-     * @return
-     */
-    @Override
-    public boolean offer(E e) {
+    public boolean push(E value) {
         if(isFull()){
             return false;
         }
-        Node<E> eNode = new Node<>(e,head);
-        tail.next = eNode;
-        tail = eNode;
+        head.next = new Node<>(value, head.next);
         size++;
         return true;
     }
 
     @Override
-    public E poll() {
+    public E pop() {
         if(isEmpty()){
             return null;
         }
         Node<E> remove = head.next;
         head.next = remove.next;
-        if(remove == tail){
-            tail = head;
-        }
         size--;
         return remove.value;
     }
@@ -100,12 +76,17 @@ public class LinkedListQueue<E> implements Queue<E>, Iterable<E> {
     }
 
     @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             Node<E> point = head.next;
             @Override
             public boolean hasNext() {
-                return point != head;
+                return point != null;
             }
 
             @Override

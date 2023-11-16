@@ -1,7 +1,6 @@
 package queue;
 
-import com.xiaowei.datastruct.queue.CycleArrayQueue;
-import com.xiaowei.datastruct.queue.LinkedListQueue;
+import com.xiaowei.datastruct.queue.impl.CycleArrayQueue;
 import org.junit.Test;
 
 import java.util.Arrays;

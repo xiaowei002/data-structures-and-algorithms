@@ -1,4 +1,6 @@
-package com.xiaowei.datastruct.queue;
+package com.xiaowei.datastruct.queue.impl;
+
+import com.xiaowei.datastruct.queue.Queue;
 
 import java.util.Iterator;
 

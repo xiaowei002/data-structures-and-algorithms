@@ -1,4 +1,6 @@
-package com.xiaowei.datastruct.stack;
+package com.xiaowei.datastruct.stack.impl;
+
+import com.xiaowei.datastruct.stack.Stack;
 
 import java.util.Iterator;
 

@@ -1,35 +1,34 @@
-package com.xiaowei.datastruct.queue;
+package com.xiaowei.datastruct.queue.impl;
+
+import com.xiaowei.datastruct.queue.Queue;
 
 import java.util.Iterator;
 
 /**
- * 用环形数组创建队列（定义size 去判断队满和队空）
+ * 用环形数组创建队列
  *
  * @param <E>
  */
-public class ArrayQueueTwo<E> implements Queue<E>, Iterable<E> {
-    /**
-     * 定义环形数组
-     */
+public class CycleArrayQueue<E> implements Queue<E>, Iterable<E> {
+
+    //定义环型数组
     private E[] array;
 
-    //头指针
+    //定义头指针
     private int head = 0;
 
-    //尾指针
+    //定义尾指针
     private int tail = 0;
 
-    //记录队列中的元素个数
-    private int size = 0;
 
     @SuppressWarnings("all")
-    public ArrayQueueTwo(int capacity) {
-        this.array = (E[]) new Object[capacity];
+    public CycleArrayQueue(int capacity) {
+        this.array = (E[]) new Object[capacity + 1];
     }
 
     @Override
     public int size() {
-        return size;
+        return 0;
     }
 
     @Override
@@ -38,6 +37,7 @@ public class ArrayQueueTwo<E> implements Queue<E>, Iterable<E> {
             return false;
         }
         array[tail] = e;
+
         tail = (tail + 1) % array.length;
         return true;
     }
@@ -62,37 +62,42 @@ public class ArrayQueueTwo<E> implements Queue<E>, Iterable<E> {
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return head == tail;
     }
 
     @Override
     public boolean isFull() {
-        return size == array.length;
+        return (tail + 1) % array.length == head;
     }
 
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             int point = head;
-            int count = 0;
+
             @Override
             public boolean hasNext() {
-                return count < array.length -1;
+                return point != tail;
             }
 
             @Override
             public E next() {
                 E e = array[point];
                 point = (point + 1) % array.length;
-                count++;
                 return e;
             }
         };
     }
-
-//    //队列中的元素个数
-//    private int size = 0;
+//    /**
+//     * 定义环形数组
+//     */
+//    private E[] array;
 //
+//    //头指针
+//    private int head = 0;
+//
+//    //尾指针
+//    private int tail = 0;
 //
 //    /**
 //     * 带参构造
@@ -100,8 +105,8 @@ public class ArrayQueueTwo<E> implements Queue<E>, Iterable<E> {
 //     * @param capacity
 //     */
 //    @SuppressWarnings("all")
-//    public ArrayQueueTwo(int capacity) {
-//        this.array = (E[]) new Object[capacity];
+//    public ArrayQueue(int capacity) {
+//        this.array = (E[]) new Object[capacity + 1];
 //    }
 //
 //    @Override
@@ -117,7 +122,6 @@ public class ArrayQueueTwo<E> implements Queue<E>, Iterable<E> {
 //        }
 //        array[tail] = e;
 //        tail = (tail + 1) % array.length;
-//        size++;
 //        return true;
 //    }
 //
@@ -128,7 +132,6 @@ public class ArrayQueueTwo<E> implements Queue<E>, Iterable<E> {
 //        }
 //        E e = array[head];
 //        head = (head + 1) % array.length;
-//        size--;
 //        return e;
 //    }
 //
@@ -142,29 +145,28 @@ public class ArrayQueueTwo<E> implements Queue<E>, Iterable<E> {
 //
 //    @Override
 //    public boolean isEmpty() {
-//        return size == 0;
+//        return head == tail;
 //    }
 //
 //    @Override
 //    public boolean isFull() {
-//        return size == array.length;
+//        return (tail + 1) % array.length == head;
 //    }
 //
 //    @Override
 //    public Iterator<E> iterator() {
 //        return new Iterator<E>() {
 //            int p = head;
-//            int count = 0;
+//
 //            @Override
 //            public boolean hasNext() {
-//                return count < array.length - 1;
+//                return p != tail;
 //            }
 //
 //            @Override
 //            public E next() {
 //                E e = array[p];
 //                p = (p + 1) % array.length;
-//                count++;
 //                return e;
 //            }
 //        };

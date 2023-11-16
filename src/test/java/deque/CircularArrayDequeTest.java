@@ -1,10 +1,8 @@
 package deque;
 
-import com.xiaowei.datastruct.deque.ArrayDeque;
-import com.xiaowei.datastruct.deque.LinkedListDeque;
+import com.xiaowei.datastruct.deque.impl.ArrayDeque;
+import com.xiaowei.datastruct.deque.impl.LinkedListDeque;
 import org.junit.Test;
-
-import java.util.Date;
 
 public class CircularArrayDequeTest {
     @Test

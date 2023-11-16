@@ -1,11 +1,9 @@
 package queue;
 
-import com.xiaowei.datastruct.queue.LinkedListQueue;
-import org.junit.Assert;
+import com.xiaowei.datastruct.queue.impl.LinkedListQueue;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

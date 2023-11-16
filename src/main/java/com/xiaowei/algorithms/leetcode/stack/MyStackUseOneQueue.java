@@ -1,6 +1,6 @@
 package com.xiaowei.algorithms.leetcode.stack;
 
-import com.xiaowei.datastruct.queue.LinkedListQueue;
+import com.xiaowei.datastruct.queue.impl.LinkedListQueue;
 
 /**
  * @author weiguowei
