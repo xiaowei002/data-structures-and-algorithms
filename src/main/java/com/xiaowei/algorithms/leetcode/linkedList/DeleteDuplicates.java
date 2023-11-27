@@ -6,22 +6,7 @@ package com.xiaowei.algorithms.leetcode.linkedList;
  * @see <a href="https://leetcode.cn/problems/remove-duplicates-from-sorted-list/description/"></a>
  */
 public class DeleteDuplicates {
-    static class ListNode {
-        int val;
-        ListNode next;
 
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     /**
      * 删除链表中的重复元素

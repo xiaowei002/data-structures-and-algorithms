@@ -7,22 +7,6 @@ package com.xiaowei.algorithms.leetcode.linkedList;
  * @see <a href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/"></a>
  */
 public class RemoveNthFromEnd {
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     /**
      * 递归遍历元素的顺序

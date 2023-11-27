@@ -6,22 +6,6 @@ package com.xiaowei.algorithms.leetcode.linkedList;
  * @see <a href="https://leetcode.cn/problems/reverse-linked-list/"></a>
  */
 public class ReverseListMethodTwo {
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     //构造新的list，包含头插法和尾插法
     static class List {

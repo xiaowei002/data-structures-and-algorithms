@@ -7,23 +7,6 @@ package com.xiaowei.algorithms.leetcode.linkedList;
  */
 public class ReverseListMethodOne {
 
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-    }
 
     /**
      * 反转链表方法

@@ -6,23 +6,6 @@ package com.xiaowei.algorithms.leetcode.linkedList;
  * 类似方法二，但并不构造add/remove方法
  */
 public class ReverseListMethodFive {
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-    }
 
     /**
      * 反转链表方法

@@ -7,22 +7,6 @@ package com.xiaowei.algorithms.leetcode.linkedList;
  * 我想删除5，我自己，我先把我的值变成1，再把后边一个1删掉就好了
  */
 public class DeleteNode {
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     /**
      * 删除给定节点

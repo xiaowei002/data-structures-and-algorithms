@@ -10,23 +10,6 @@ import java.util.List;
  * 使用快慢指针，以及两个节点，删除倒数第二个，则p1快p2 3步，当p1到null，p2为要删除的前一个节点
  */
 public class RemoveNthFromEndWithFastAndSlow {
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
     /**
      * 删除链表中倒数第N个节点
      *

@@ -7,22 +7,6 @@ package com.xiaowei.algorithms.leetcode.linkedList;
  */
 public class MergeTwoListsByRecursion {
 
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     /**
      * 递归合并链表中的元素

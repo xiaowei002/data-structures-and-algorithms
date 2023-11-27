@@ -7,22 +7,6 @@ package com.xiaowei.algorithms.leetcode.linkedList;
  */
 public class IsPalindrome {
 
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     /**
      * 1.找到中间点

@@ -8,22 +8,6 @@ package com.xiaowei.algorithms.leetcode.linkedList;
  * 每次将o2 从旧链表剪切，并将o2指向n1，然后更新n1为头，让o2 继续变为旧链表第二个节点，以此往复，直到o2等于null
  */
 public class ReverseListMethodFour {
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     /**
      * 使用双指针反转链表

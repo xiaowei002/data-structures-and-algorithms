@@ -21,5 +21,8 @@ public class PriorityQueueTest {
         Entity poll = priorityQueue.poll();
         System.out.println(poll.getValue());
         System.out.println(poll.priority());
+        int i = 0;
+        int b = i++;
+        System.out.println(b);
     }
 }
